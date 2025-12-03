@@ -1,38 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const RollingText = ({ text }) => {
   return (
     <div className="relative overflow-hidden h-[1.2em] group cursor-pointer">
-      <div className="transition-transform duration-300 group-hover:-translate-y-full">
-        <div className="h-[1.2em]">{text}</div>
-        <div className="h-[1.2em]">{text}</div>
+      <div className="transition-transform duration-300 group-hover:-translate-y-1/2 flex flex-col">
+        <div className="h-[1.2em] flex items-center leading-none">{text}</div>
+        <div className="h-[1.2em] flex items-center leading-none">{text}</div>
       </div>
     </div>
   );
 };
 
+import { navLinks } from '../data/navigation';
+import { useSmartSticky } from '../utils/scrollUtils';
+import FlowButton from './btns/FlowButton';
+
 const Header = () => {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
+  const hidden = useSmartSticky();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
-
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'How it works', href: '#how-it-works' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Pricing', href: '#pricing' },
-  ];
 
   return (
     <motion.header
@@ -46,7 +32,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="text-2xl font-bold tracking-tighter text-white">
+        <a href="/" className="text-2xl font-bold tracking-tighter text-white hover:text-[#39E590] transition-colors duration-300">
           Outstaffing Pro
         </a>
 
@@ -56,7 +42,7 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-gray-300 hover:text-[#39E590] transition-colors duration-300"
             >
               <RollingText text={link.name} />
             </a>
@@ -65,11 +51,12 @@ const Header = () => {
 
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-4">
+          <FlowButton text="Book a Meeting" href="#contact" />
           <a
             href="https://wa.me/61123456789" // Placeholder Aussie number
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0A0A0A] bg-[#25D366] rounded-lg hover:bg-[#20bd5a] transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold text-[#0A0A0A] bg-[#25D366] rounded-[100px] hover:bg-[#20bd5a] transition-colors border-[1.5px] border-transparent hover:rounded-[12px] duration-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -121,18 +108,19 @@ const Header = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-base font-medium text-gray-300 hover:text-white"
+                  className="text-base font-medium text-gray-300 hover:text-[#39E590] transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
               <div className="flex flex-col gap-3 mt-4">
+                 <FlowButton text="Book a Meeting" href="#contact" />
                  <a
                     href="https://wa.me/61123456789"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-4 py-2 text-sm font-medium text-[#0A0A0A] bg-[#25D366] rounded-lg hover:bg-[#20bd5a]"
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0A0A0A] bg-[#25D366] rounded-lg hover:bg-[#20bd5a] transition-colors"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

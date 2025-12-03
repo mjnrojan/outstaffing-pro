@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials.jsx'
 import Pricing from './components/Pricing.jsx'
 import FAQ from './components/FAQ.jsx'
 import CTA from './components/CTA.jsx'
+import BrandLogos from './components/BrandLogos.jsx'
 import Footer from './components/Footer.jsx'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
       <Testimonials />
       <Services />
       <Pricing />
+      <BrandLogos />
       <FAQ />
       <CTA />
       <Footer />

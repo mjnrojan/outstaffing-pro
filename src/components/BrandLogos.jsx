@@ -1,50 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import MarqueeCard from './MarqueeCard';
+import React from 'react';
 import LogoLoop from './LogoLoop';
-import { sectors } from '../data/sectors';
 
-const SingleRowMarquee = ({ isPaused }) => {
-  return (
-    <div className="flex overflow-hidden whitespace-nowrap">
-      <motion.div
-        className="flex gap-6 items-start"
-        animate={{
-          x: isPaused ? undefined : [0, -3200],
-        }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 50,
-            ease: "linear",
-          },
-        }}
-      >
-        {/* Render cards 3 times for seamless loop */}
-        {[...Array(3)].map((_, setIndex) => (
-          <React.Fragment key={setIndex}>
-            {sectors.map((sector, index) => (
-              <div
-                key={`${setIndex}-${index}`}
-                className={index % 2 === 0 ? 'mt-0' : 'mt-12'}
-              >
-                <MarqueeCard
-                  imageUrl={sector.imageUrl}
-                  imageAlt={sector.imageAlt}
-                  title={sector.title}
-                  description={sector.description}
-                />
-              </div>
-            ))}
-          </React.Fragment>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
-// Brand logos for the "Brands that trust us" section
+// SVG logos for top brands
 const BrandLogo = ({ children, title }) => (
   <div className="h-12 flex items-center justify-center text-white/60 hover:text-white/90 transition-colors" title={title}>
     {children}
@@ -84,6 +41,13 @@ const brandLogos = [
         <svg className="h-8 w-auto" viewBox="0 0 603 182" fill="currentColor">
           <path d="M374.1 141.6c-31.7 23.4-77.7 35.9-117.3 35.9-55.5 0-105.5-20.5-143.3-54.7-3-2.7-.3-6.3 3.3-4.2 41.1 23.9 91.9 38.3 144.4 38.3 35.4 0 74.4-7.3 110.3-22.5 5.4-2.3 9.9 3.5 4.6 7.2z"/>
           <path d="M387.5 126.4c-4-5.2-26.7-2.5-36.9-1.3-3.1.4-3.6-2.3-.8-4.3 18.1-12.7 47.7-9 51.2-4.8 3.5 4.3-.9 34-17.9 48.2-2.6 2.2-5.1 1-3.9-1.9 3.8-9.4 12.3-30.6 8.3-35.9z"/>
+          <path d="M347.4 15.5v-11c0-1.7 1.3-2.8 2.8-2.8h49.9c1.6 0 2.8 1.2 2.8 2.8v9.4c0 1.6-1.3 3.7-3.6 7l-25.8 36.9c9.6-.2 19.7 1.2 28.4 6.1 2 1.1 2.5 2.7 2.7 4.3v11.7c0 1.6-1.8 3.5-3.7 2.5-15.6-8.2-36.3-9.1-53.5.1-1.8 1-3.6-.9-3.6-2.5v-11.1c0-1.8 0-4.9 1.8-7.6l29.9-42.9h-26c-1.6 0-2.8-1.2-2.8-2.8z"/>
+          <path d="M102.3 77.5h-14.9c-1.4-.1-2.5-1.2-2.6-2.5V4.6c0-1.5 1.3-2.7 2.8-2.7h13.9c1.4.1 2.6 1.2 2.7 2.6v9.3h.3c3.6-9.1 10.4-13.4 19.5-13.4 9.3 0 15.1 4.3 19.3 13.4 3.6-9.1 11.8-13.4 20.4-13.4 6.2 0 13 2.6 17.2 8.3 4.7 6.5 3.7 15.9 3.7 24.2v41.3c0 1.5-1.3 2.7-2.8 2.7h-14.9c-1.5-.1-2.7-1.3-2.7-2.7V37.3c0-3.3.3-11.4-.4-14.5-.9-5.2-3.9-6.7-7.7-6.7-3.2 0-6.5 2.1-7.8 5.5-1.4 3.4-1.2 9-1.2 13.7v39.8c0 1.5-1.3 2.7-2.8 2.7h-14.9c-1.5-.1-2.7-1.3-2.7-2.7l-.1-39.8c0-8.4 1.4-20.7-8.1-20.7-9.6 0-9.2 11-9.2 20.7v39.8c0 1.5-1.3 2.7-2.8 2.7z"/>
+          <path d="M433.9 0c22.1 0 34.1 19 34.1 43.1 0 23.3-13.2 41.8-34.1 41.8-21.7 0-33.6-19-33.6-42.6C400.3 18.5 412.5 0 433.9 0zm.1 15.3c-11 0-11.7 15-11.7 24.3 0 9.4-.1 29.3 11.6 29.3 11.5 0 12.1-16 12.1-25.8 0-6.4-.3-14.2-2-20.3-1.5-5.3-4.4-7.5-9.9-7.5z"/>
+          <path d="M514.9 77.5h-14.8c-1.5-.1-2.7-1.3-2.7-2.7l-.1-70.2c.1-1.4 1.3-2.5 2.8-2.5h13.8c1.3.1 2.4 1 2.6 2.3v10.8h.3c4-9.9 9.6-14.6 19.4-14.6 6.4 0 12.6 2.3 16.6 8.7 3.7 5.9 3.7 15.8 3.7 22.9v43.3c-.2 1.3-1.4 2.4-2.8 2.4h-14.9c-1.3-.1-2.4-1.1-2.6-2.4V37.9c0-8.2 1-20.3-9.2-20.3-3.6 0-6.8 2.4-8.4 6.1-2.1 4.6-2.4 9.2-2.4 14.2v37.1c-.1 1.6-1.4 2.8-2.9 2.7z"/>
+          <path d="M236.7 50.7c0 6.5.2 11.9-3.1 17.6-2.7 4.6-7 7.4-11.7 7.4-6.5 0-10.3-4.9-10.3-12.2 0-14.3 12.8-16.9 25-16.9v4.1zm14.9 36c-1 .9-2.4 1-3.5.4-5-4.1-5.8-6-8.6-10-8.2 8.4-14 10.9-24.6 10.9-12.6 0-22.3-7.7-22.3-23.2 0-12.1 6.6-20.3 15.9-24.3 8.1-3.6 19.4-4.2 28-5.2v-1.9c0-3.5.3-7.6-1.8-10.6-1.8-2.7-5.3-3.8-8.4-3.8-5.7 0-10.8 2.9-12 9-.3 1.3-1.2 2.6-2.5 2.7l-14.4-1.5c-1.2-.3-2.5-1.3-2.2-3.2 3.3-17.4 19.1-22.6 33.2-22.6 7.2 0 16.7 1.9 22.4 7.3 7.2 6.7 6.5 15.6 6.5 25.3v22.9c0 6.9 2.9 9.9 5.6 13.6.9 1.3 1.1 2.8-.1 3.8l-12.2 10.4z"/>
+          <path d="M43.1 50.7c0 6.5.2 11.9-3.1 17.6-2.7 4.6-7 7.4-11.7 7.4-6.5 0-10.3-4.9-10.3-12.2 0-14.3 12.8-16.9 25-16.9v4.1zm14.9 36c-1 .9-2.4 1-3.5.4-5-4.1-5.8-6-8.6-10-8.2 8.4-14 10.9-24.6 10.9C8.7 87.9-1 80.2-1 64.7c0-12.1 6.6-20.3 15.9-24.3 8.1-3.6 19.4-4.2 28-5.2v-1.9c0-3.5.3-7.6-1.8-10.6-1.8-2.7-5.3-3.8-8.4-3.8-5.7 0-10.8 2.9-12 9-.3 1.3-1.2 2.6-2.5 2.7L3.8 29.1c-1.2-.3-2.5-1.3-2.2-3.2C4.9 8.5 20.7 3.3 34.8 3.3c7.2 0 16.7 1.9 22.4 7.3 7.2 6.7 6.5 15.6 6.5 25.3v22.9c0 6.9 2.9 9.9 5.6 13.6.9 1.3 1.1 2.8-.1 3.8l-12.2 10.4z"/>
+          <path d="M303.5 77.5h-14.9c-1.5-.1-2.7-1.3-2.7-2.7l-.1-70.2c.1-1.4 1.3-2.5 2.8-2.5h13.9c1.3.1 2.4 1 2.6 2.3v10.3h.3c4-9.6 9.6-14.1 19.2-14.1 6.3 0 12.5 2.3 16.4 8.4 3.6 5.6 3.6 15 3.6 21.7v43.8c-.2 1.3-1.4 2.4-2.8 2.4h-14.9c-1.3-.1-2.4-1.1-2.6-2.4V38.3c0-8.2.9-20.2-9.1-20.2-3.5 0-6.8 2.4-8.4 6-2 4.5-2.3 9-2.3 13.9v37.1c0 1.5-1.3 2.7-2.8 2.7z"/>
         </svg>
       </BrandLogo>
     ),
@@ -119,46 +83,48 @@ const brandLogos = [
     ),
     title: "Netflix"
   },
+  {
+    node: (
+      <BrandLogo title="Spotify">
+        <svg className="h-10 w-auto" viewBox="0 0 496 512" fill="currentColor">
+          <path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7 0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9 0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm31-76.2c-5.2 0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2 0-23.3-10.3-23.3-23.6 0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6 0 13.6-11 23.3-23.2 23.3z"/>
+        </svg>
+      </BrandLogo>
+    ),
+    title: "Spotify"
+  },
+  {
+    node: (
+      <BrandLogo title="Slack">
+        <svg className="h-10 w-auto" viewBox="0 0 122.8 122.8" fill="currentColor">
+          <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z"/>
+          <path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z"/>
+          <path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z"/>
+          <path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z"/>
+        </svg>
+      </BrandLogo>
+    ),
+    title: "Slack"
+  },
 ];
 
-export default function Sectors() {
-  const [isPaused, setIsPaused] = useState(false);
-
+export default function BrandLogos() {
   return (
-    <section 
-      className="py-16 bg-[#0A0A0A] border-b border-white/5 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <div className="container mx-auto px-6 mb-12 text-center">
-        <p className="text-gray-500 text-sm font-medium uppercase tracking-widest">
-          We work with every business sector
-        </p>
-      </div>
-      
-      {/* Single row with alternating vertical alignment */}
-      <SingleRowMarquee isPaused={isPaused} />
-
-      {/* Brands that trust us - Logo Loop */}
-      <div className="mt-20">
-        <p className="text-center text-gray-500 text-sm font-medium mb-8 uppercase tracking-widest">
-          Brands that trust us
-        </p>
-        <div className="relative">
-          <LogoLoop
-            logos={brandLogos}
-            speed={60}
-            direction="left"
-            logoHeight={48}
-            gap={80}
-            pauseOnHover
-            fadeOut
-            fadeOutColor="#0A0A0A"
-            scaleOnHover
-            ariaLabel="Brands that trust us"
-            className="opacity-50 hover:opacity-70 transition-opacity"
-          />
-        </div>
+    <section className="py-12 bg-[#0A0A0A] border-b border-white/5">
+      <div className="relative">
+        <LogoLoop
+          logos={brandLogos}
+          speed={80}
+          direction="left"
+          logoHeight={48}
+          gap={80}
+          pauseOnHover
+          fadeOut
+          fadeOutColor="#0A0A0A"
+          scaleOnHover
+          ariaLabel="Top brands using our services"
+          className="opacity-50 hover:opacity-70 transition-opacity"
+        />
       </div>
     </section>
   );

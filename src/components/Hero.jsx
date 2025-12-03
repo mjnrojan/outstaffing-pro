@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import FlowButton from './btns/FlowButton';
 
 export default function Hero() {
   return (
@@ -19,7 +20,7 @@ export default function Hero() {
             className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-8"
           >
             Premium Outstaffing <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
               Solutions
             </span>
           </motion.h1>
@@ -39,12 +40,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a
-              href="#contact"
-              className="w-full sm:w-auto px-8 py-4 text-lg font-semibold text-[#0A0A0A] bg-[#39E590] rounded-xl hover:bg-[#32cc80] transition-colors"
-            >
-              Start Hiring
-            </a>
+            <FlowButton text="Start Hiring" href="#contact" />
           </motion.div>
         </div>
       </div>

@@ -58,7 +58,7 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Tall Card */}
-          <div className="md:col-span-1 md:row-span-2 bg-gradient-to-b from-[#39E590]/10 to-transparent border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center justify-center">
+          <div className="md:col-span-1 md:row-span-2 bg-linear-to-b from-[#39E590]/10 to-transparent border border-white/10 rounded-3xl p-8 flex flex-col items-center text-center justify-center">
              <div className="w-20 h-20 bg-[#39E590] rounded-full flex items-center justify-center mb-6 text-[#0A0A0A]">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />

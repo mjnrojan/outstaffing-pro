@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import FlowButton from './btns/FlowButton';
 
 export default function CTA() {
   return (
     <section id="contact" className="py-32 bg-[#0A0A0A] relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#39E590]/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#39E590]/5 pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10 text-center">
         <motion.h2
@@ -33,12 +34,7 @@ export default function CTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <a
-            href="#"
-            className="inline-block px-10 py-5 text-xl font-semibold text-[#0A0A0A] bg-[#39E590] rounded-xl hover:bg-[#32cc80] transition-colors"
-          >
-            Get Started Now
-          </a>
+          <FlowButton text="Get Started Now" href="#contact" />
         </motion.div>
       </div>
     </section>

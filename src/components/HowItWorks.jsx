@@ -5,6 +5,7 @@ const steps = [
   {
     title: 'Discovery Call',
     desc: 'We start by understanding your specific needs, team culture, and technical requirements. This ensures we find the perfect match for your organization.',
+    text: 'We start by understanding your specific needs, team culture, and technical requirements. This ensures we find the perfect match for your organization.',
     icon: '01'
   },
   {
