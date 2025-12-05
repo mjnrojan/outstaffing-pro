@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import FlowButton from './btns/FlowButton.jsx';
+import { GlowingEffect } from './ui/GlowingEffect.jsx';
 
 const steps = [
   {
@@ -32,7 +34,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 bg-[#0A0A0A] border-b border-white/5">
+    <section id="how-it-works" data-section="how-it-works" className="py-24 bg-[#0A0A0A] border-b border-white/5">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Sticky Left Side */}
@@ -55,15 +57,28 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white/5 border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-colors group"
+                className="relative bg-white/5 border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-colors group"
               >
+                <GlowingEffect 
+                  spread={40}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  borderWidth={2}
+                />
                 <div className="text-5xl font-bold text-white/10 mb-6 group-hover:text-[#39E590]/20 transition-colors">
                   {step.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
-                <p className="text-gray-400 text-lg leading-relaxed">
+                <p className="text-gray-400 text-lg leading-relaxed mb-6">
                   {step.desc}
                 </p>
+                <FlowButton 
+                  text="Learn More" 
+                  href="#contact"
+                  className="text-sm"
+                />
               </motion.div>
             ))}
           </div>

@@ -4,7 +4,7 @@ import MarqueeCard from './MarqueeCard';
 import LogoLoop from './LogoLoop';
 import { sectors } from '../data/sectors';
 
-const SingleRowMarquee = ({ isPaused }) => {
+const SingleRowMarquee = ({ isPaused, onCardHover }) => {
   return (
     <div className="flex overflow-hidden whitespace-nowrap">
       <motion.div
@@ -28,6 +28,8 @@ const SingleRowMarquee = ({ isPaused }) => {
               <div
                 key={`${setIndex}-${index}`}
                 className={index % 2 === 0 ? 'mt-0' : 'mt-12'}
+                onMouseEnter={() => onCardHover(true)}
+                onMouseLeave={() => onCardHover(false)}
               >
                 <MarqueeCard
                   imageUrl={sector.imageUrl}
@@ -127,8 +129,6 @@ export default function Sectors() {
   return (
     <section 
       className="py-16 bg-[#0A0A0A] border-b border-white/5 overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="container mx-auto px-6 mb-12 text-center">
         <p className="text-gray-500 text-sm font-medium uppercase tracking-widest">
@@ -137,7 +137,7 @@ export default function Sectors() {
       </div>
       
       {/* Single row with alternating vertical alignment */}
-      <SingleRowMarquee isPaused={isPaused} />
+      <SingleRowMarquee isPaused={isPaused} onCardHover={setIsPaused} />
 
       {/* Brands that trust us - Logo Loop */}
       <div className="mt-20">
