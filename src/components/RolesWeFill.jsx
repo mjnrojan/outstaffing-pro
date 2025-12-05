@@ -22,8 +22,8 @@ export default function RolesWeFill() {
         </div>
 
         {/* Category Navigation */}
-        <div className="mb-16 overflow-x-auto pb-4">
-          <div className="flex gap-3 justify-center min-w-max mx-auto">
+        <div className="mb-16 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex gap-3 justify-start md:justify-center min-w-max mx-auto px-4 md:px-0">
             {roleCategories.map((category) => (
               <button
                 key={category.id}
@@ -40,7 +40,7 @@ export default function RolesWeFill() {
           </div>
         </div>
 
-        {/* Cards Layout - Similar to How It Works */}
+        {/* Cards Layout */}
         <div className="flex flex-col lg:flex-row gap-8 max-w-7xl mx-auto">
           
           {/* Scrolling Left & Center Cards Container */}
@@ -55,7 +55,7 @@ export default function RolesWeFill() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`relative p-8 rounded-3xl border flex flex-col ${
+                  className={`relative p-6 md:p-8 rounded-3xl border flex flex-col ${
                     position.highlight
                       ? 'bg-white/10 border-[#39E590]'
                       : 'bg-white/5 border-white/10'
@@ -69,12 +69,12 @@ export default function RolesWeFill() {
                   )}
                   
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{position.title}</h3>
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">{position.title}</h3>
                     <p className="text-gray-400 text-sm">Junior Level</p>
                   </div>
 
                   <div className="mb-6">
-                    <span className="text-4xl font-bold text-white">AU${position.juniorRate}</span>
+                    <span className="text-3xl md:text-4xl font-bold text-white">AU${position.juniorRate}</span>
                     <span className="text-gray-500 ml-1">/hour</span>
                   </div>
 
@@ -92,7 +92,7 @@ export default function RolesWeFill() {
                   {/* Tools */}
                   <div className="pt-4 border-t border-white/10 mb-6">
                     <p className="text-gray-500 text-xs mb-2">Common Tools:</p>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {position.tools.map((tool, idx) => (
                         <span key={idx} className="text-2xl">{tool}</span>
                       ))}
@@ -118,7 +118,7 @@ export default function RolesWeFill() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`relative p-8 rounded-3xl border flex flex-col ${
+                  className={`relative p-6 md:p-8 rounded-3xl border flex flex-col ${
                     position.highlight
                       ? 'bg-white/10 border-[#39E590]'
                       : 'bg-white/5 border-white/10'
@@ -132,12 +132,12 @@ export default function RolesWeFill() {
                   )}
                   
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{position.title}</h3>
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-2">{position.title}</h3>
                     <p className="text-gray-400 text-sm">Senior Expert</p>
                   </div>
 
                   <div className="mb-6">
-                    <span className="text-4xl font-bold text-white">AU${position.seniorRate}</span>
+                    <span className="text-3xl md:text-4xl font-bold text-white">AU${position.seniorRate}</span>
                     <span className="text-gray-500 ml-1">/hour</span>
                   </div>
 
@@ -155,7 +155,7 @@ export default function RolesWeFill() {
                   {/* Tools */}
                   <div className="pt-4 border-t border-white/10 mb-6">
                     <p className="text-gray-500 text-xs mb-2">Common Tools:</p>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {position.tools.map((tool, idx) => (
                         <span key={idx} className="text-2xl">{tool}</span>
                       ))}
@@ -175,15 +175,15 @@ export default function RolesWeFill() {
 
           {/* Right Card - Custom/Sticky (Non-scrolling) */}
           <div className="lg:w-1/3">
-            <div className="relative bg-white/5 border border-white/10 rounded-3xl p-8 lg:sticky lg:top-24 flex flex-col h-fit">
+            <div className="relative bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8 lg:sticky lg:top-24 flex flex-col h-fit">
               <GlowingEffect spread={40} glow={true} disabled={false} proximity={64} inactiveZone={0.01} borderWidth={2} />
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">Full Squad</h3>
-                <p className="text-gray-400 text-sm h-10">A complete team to build your product from scratch.</p>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Full Squad</h3>
+                <p className="text-gray-400 text-sm">A complete team to build your product from scratch.</p>
               </div>
 
               <div className="mb-8">
-                <span className="text-4xl font-bold text-white">Custom</span>
+                <span className="text-3xl md:text-4xl font-bold text-white">Custom</span>
               </div>
 
               <ul className="space-y-4 mb-8 flex-1">

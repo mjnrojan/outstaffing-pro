@@ -145,6 +145,10 @@ export default function Sectors() {
           Brands that trust us
         </p>
         <div className="relative">
+          {/* Blur edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10 pointer-events-none"></div>
+          
           <LogoLoop
             logos={brandLogos}
             speed={60}
@@ -152,11 +156,10 @@ export default function Sectors() {
             logoHeight={48}
             gap={80}
             pauseOnHover
-            fadeOut
-            fadeOutColor="#0A0A0A"
+            fadeOut={false}
             scaleOnHover
             ariaLabel="Brands that trust us"
-            className="opacity-50 hover:opacity-70 transition-opacity"
+            className="opacity-50 hover:opacity-70 transition-opacity md:pointer-events-auto touch-pan-x"
           />
         </div>
       </div>

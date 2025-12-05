@@ -74,3 +74,29 @@ button {
   scrollbar-width: thin;
   scrollbar-color: rgba(57, 229, 144, 0.3) rgba(255, 255, 255, 0.05);
 }
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Touch-friendly tap highlights */
+* {
+  -webkit-tap-highlight-color: rgba(57, 229, 144, 0.1);
+}
+
+/* Better mobile touch scrolling */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
