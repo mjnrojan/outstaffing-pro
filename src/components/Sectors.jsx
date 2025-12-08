@@ -125,6 +125,16 @@ const brandLogos = [
 
 export default function Sectors() {
   const [isPaused, setIsPaused] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const SCROLL_AMOUNT = 406; // Width of one card (400px) + gap (6px)
+
+  const handleScrollLeft = () => {
+    setScrollOffset((prev) => prev + SCROLL_AMOUNT);
+  };
+
+  const handleScrollRight = () => {
+    setScrollOffset((prev) => prev - SCROLL_AMOUNT);
+  };
 
   return (
     <section 
@@ -138,6 +148,55 @@ export default function Sectors() {
       
       {/* Single row with alternating vertical alignment */}
       <SingleRowMarquee isPaused={isPaused} onCardHover={setIsPaused} />
+
+      {/* Manual Navigation Controls */}
+      <div 
+        className="flex justify-center items-center gap-4 mt-8"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <button
+          onClick={handleScrollLeft}
+          className="group p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+          aria-label="Scroll left"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-white/60 group-hover:text-white transition-colors"
+          >
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        
+        <button
+          onClick={handleScrollRight}
+          className="group p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-300"
+          aria-label="Scroll right"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-white/60 group-hover:text-white transition-colors"
+          >
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
 
       {/* Brands that trust us - Logo Loop */}
       <div className="mt-20">

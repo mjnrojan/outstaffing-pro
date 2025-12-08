@@ -67,7 +67,7 @@ export default function HowItWorks() {
                   inactiveZone={0.01}
                   borderWidth={2}
                 />
-                <div className="text-5xl font-bold text-white/10 mb-6 group-hover:text-[#39E590]/20 transition-colors">
+                <div className="text-5xl font-bold text-white/10 mb-6 group-hover:text-[#39E590] transition-colors">
                   {step.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
